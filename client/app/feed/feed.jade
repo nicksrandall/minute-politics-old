@@ -1,0 +1,24 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container(ng-repeat='post in posts')
+  .row
+    .col-sm-2
+      .row
+        .col-xs-4.col-sm-12
+          .profileImageFeed
+            img.img-responsive.img-circle(gravatar-src='{{post.author.email}}', gravatar-size='250', class='{{post.author.profile.party}}')
+        hr.hidden-xs
+        .col-xs-8.col-sm-12
+          div.feedName
+            p.feedDescription.feedName {{post.author.name}}
+            p.feedDescription.feedPosition {{post.author.office}}
+            p.feedDescription.feedArea {{post.author.area}}
+        .col-xs-12
+          hr
+          p
+            a.btn.btn-primary.btn-lg.btn-block(href='#', role='button') Follow
+    .col-sm-10
+      stump-video(post='post')
+  hr
+
+appFooter
