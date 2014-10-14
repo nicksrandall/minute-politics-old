@@ -10,7 +10,7 @@ angular.module('stumpIoApp')
     $scope.updateProfile = function(form) {
       // Hit the update endpoint with new data. Boom.
       if (form.$valid) {
-        $http.put('http://localhost:9000/api/users/' + $scope.user._id,  $scope.user);
+        $http.put('/api/users/' + $scope.user._id,  $scope.user);
       }
     };
 
