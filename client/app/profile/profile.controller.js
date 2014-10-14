@@ -5,17 +5,6 @@ angular.module('stumpIoApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.user = User.get(); //I'll need to set this based on user selected
     $scope.posts = [];
-    if($scope.user.hasOwnProperty('$promise')) {
-          $scope.user.$promise.then(function() {
-            getUserPosts();
-          }).catch(function() {
-            return false
-          });
-        } else if($scope.user.hasOwnProperty('role')) {
-          getUserPosts();
-        } else {
-          return false
-        }
 
     function getUserPosts () {
       $http.get('/api/posts/user/' + $scope.user._id).success(function(posts) {
@@ -28,4 +17,17 @@ angular.module('stumpIoApp')
         });
       });
     }
+
+    if($scope.user.hasOwnProperty('$promise')) {
+      $scope.user.$promise.then(function() {
+        getUserPosts();
+      }).catch(function() {
+        return false;
+      });
+    } else if($scope.user.hasOwnProperty('role')) {
+      getUserPosts();
+    } else {
+      return false;
+    }
+
   });
