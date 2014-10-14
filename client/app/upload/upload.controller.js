@@ -10,7 +10,7 @@ angular.module('stumpIoApp')
       $scope.fileKey = file[0].key;
     };
     $scope.submit = function () {
-      $http.post('http://localhost:9000/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags });
+      $http.post('/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags });
     };
   })
   .directive('filepicker', function(){
