@@ -13,6 +13,6 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri:    process.env.MONGOHQ_URL || 'mongodb://heroku:EhVBuhDfMTLZXh_fUe-VKYmOUaa-XdAkqaSleeVVOFm_m5ARUo3zrNIWgtGw5ig1TBxIR59ThWj5ja6vJ8l26g@kahana.mongohq.com:10040/app30101073',
+    uri:    process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGOHQ_URL || '',
   }
 };
