@@ -28,7 +28,7 @@ angular.module('stumpIoApp')
             container: 'modal',
             mimetypes: attrs.mimetypes ? attrs.mimetypes : 'video/*',
             multiple: attrs.multiple ? attrs.multiple : false
-            };
+          };
 
           var storeOptions = {
             location: 'S3',

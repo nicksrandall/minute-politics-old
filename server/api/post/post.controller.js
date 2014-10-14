@@ -6,8 +6,6 @@ var User = require('../user/user.model');
 var AWS = require('aws-sdk');
 
 AWS.config.region = 'us-west-2';
-AWS.config.accessKeyId = 'AKIAIZU4JKUARIGBRSAA';
-AWS.config.secretAccessKey = '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';
 
 // Get list of posts
 exports.index = function(req, res) {
