@@ -6,7 +6,7 @@ div(ng-include='"components/navbar/navbar.html"')
       .row
         .col-xs-4.col-sm-12
           .profileImageFeed
-            img.img-responsive.img-circle(gravatar-src='{{post.author.email}}', gravatar-size='250', class='{{post.author.profile.party}}')
+            img.img-responsive.img-circle(gravatar-src='post.author.email', gravatar-size='250', class='post.author.profile.party')
         hr.hidden-xs
         .col-xs-8.col-sm-12
           div.feedName
