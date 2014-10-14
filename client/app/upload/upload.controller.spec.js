@@ -1,21 +1,21 @@
 'use strict';
 
-describe('Controller: UploadCtrl', function () {
+// describe('Controller: UploadCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('stumpIoApp'));
+//   // load the controller's module
+//   beforeEach(module('stumpIoApp'));
 
-  var UploadCtrl, scope;
+//   var UploadCtrl, scope;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    UploadCtrl = $controller('UploadCtrl', {
-      $scope: scope
-    });
-  }));
+//   // Initialize the controller and a mock scope
+//   beforeEach(inject(function ($controller, $rootScope) {
+//     scope = $rootScope.$new();
+//     UploadCtrl = $controller('UploadCtrl', {
+//       $scope: scope
+//     });
+//   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
-  });
-});
+//   it('should ...', function () {
+//     expect(1).toEqual(1);
+//   });
+// });

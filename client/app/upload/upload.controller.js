@@ -2,7 +2,7 @@
 
 angular.module('stumpIoApp')
   .controller('UploadCtrl', function ($scope, $http) {
-    $scope.message = 'Hello';
+    filepicker.setKey('AvbcyLqrSxK7GoIAJ6stPz');
     $scope.tags = [];
     $scope.disabled = true;
     $scope.fileCalleback = function (file) {

@@ -1,7 +1,5 @@
 'use strict';
 
-filepicker.setKey('AvbcyLqrSxK7GoIAJ6stPz');
-
 angular.module('stumpIoApp')
   .config(function ($stateProvider) {
     $stateProvider
@@ -10,5 +8,4 @@ angular.module('stumpIoApp')
         templateUrl: 'app/upload/upload.html',
         controller: 'UploadCtrl'
       });
-
   });
