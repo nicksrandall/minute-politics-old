@@ -6,7 +6,8 @@ section.profile
       .col-md-3.profile-info
         .row
           .col-xs-4.col-sm-12
-            img.img-responsive.img-circle.profileImage(gravatar-src='{{user.email}}', gravatar-size='250', class='{{user.party}}')
+            img.img-responsive.img-circle.profileImage(ng-if='user.picture', ng-src='{{user.picture | userPicture}}', width='250px', height='250px', class='{{user.party}}')
+            img.img-responsive.img-circle.profileImage(ng-if='!user.picture', gravatar-src='user.email', gravatar-size='250', class='{{user.party}}')
           hr.hidden-xs
           .col-xs-8.col-sm-12
             div.feedName
