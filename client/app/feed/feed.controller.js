@@ -4,7 +4,7 @@ angular.module('stumpIoApp')
   .controller('FeedCtrl', function ($scope, $sce, $http) {
     $scope.posts = [];
 
-    angular.element(document).ready(function () {
+    $scope.$on('$viewContentLoaded', function () {
       sublime.load();
     });
 

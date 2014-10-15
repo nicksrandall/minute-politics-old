@@ -7,8 +7,7 @@
     source(src='{{ post.webmSD }}', data-quality='hd')
   .pull-left
     span(style='line-height: 38px;') Tags:&nbsp;
-      span(ng-repeat='tag in post.tags')
-        a.tag(href='#') {{tag.text}}
+      a.tag(ng-repeat='tag in post.tags', href='#') {{tag.text}}
   .btn-group.pull-right
     a.btn.btn-default(href='#', role='button') {{post.likes + ' Likes'}}
     a.btn.btn-default(href='#', role='button') {{post.likes + ' Shares'}}
