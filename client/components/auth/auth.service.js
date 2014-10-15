@@ -10,6 +10,14 @@ angular.module('stumpIoApp')
     return {
 
       /**
+       * Returns current logged in user.
+       * @return {obj} The user object.
+       */
+      getUser: function () {
+        return currentUser;
+      },
+
+      /**
        * Authenticate user and save token
        *
        * @param  {Object}   user     - login info

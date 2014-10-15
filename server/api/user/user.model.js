@@ -26,7 +26,7 @@ var UserSchema = new Schema({
   location: { type: String, default: '' },
   website: { type: String, default: '' },
   party: String,
-  picture: { type: String, default: '' },
+  picture: String,
 
   posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
 

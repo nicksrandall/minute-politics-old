@@ -48,7 +48,8 @@ div(ng-include='"components/navbar/navbar.html"')
       .form-group
         label.col-sm-2.control-label(for='gravatar') Gravatar
         .col-sm-2
-          img.profile(gravatar-src='user.email', gravatar-size='100')
+          img.profile(ng-if='user.picture', ng-src='{{user.picture | userPicture}}', width='100px', height='100px')
+          img.profile(ng-if='!user.picture', gravatar-src='user.email', gravatar-size='100')
         .col-sm-4
           button.btn.btn-primary(type='button', ng-click='editImage()')
             i.fa.fa-photo

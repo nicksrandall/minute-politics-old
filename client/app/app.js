@@ -1,5 +1,5 @@
 'use strict';
-
+filepicker.setKey('AvbcyLqrSxK7GoIAJ6stPz');
 angular.module('stumpIoApp', [
     'ngCookies',
     'ngResource',
