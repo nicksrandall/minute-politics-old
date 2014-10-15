@@ -4,6 +4,10 @@ angular.module('stumpIoApp')
   .controller('FeedCtrl', function ($scope, $sce, $http) {
     $scope.posts = [];
 
+    angular.element(document).ready(function () {
+      sublime.load();
+    });
+
     $http.get('/api/posts').success(function(posts) {
       $scope.posts = posts.map(function (item) {
         item.mp4SD = $sce.trustAsResourceUrl(item.mp4SD);

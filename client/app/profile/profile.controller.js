@@ -6,6 +6,10 @@ angular.module('stumpIoApp')
     $scope.user = User.get(); //I'll need to set this based on user selected
     $scope.posts = [];
 
+    angular.element(document).ready(function () {
+      sublime.load();
+    });
+
     function getUserPosts () {
       $http.get('/api/posts/user/' + $scope.user._id).success(function(posts) {
         $scope.posts = posts.map(function (item) {
