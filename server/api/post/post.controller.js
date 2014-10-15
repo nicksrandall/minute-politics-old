@@ -57,6 +57,7 @@ exports.create = function(req, res) {
   post = new Post({
     mp4SD: 'https://d3yvfnmmtea7a.cloudfront.net/mp4SD/' + url.replace(/ /g, '%2B') + '.mp4',
     mp4HD: 'https://d3yvfnmmtea7a.cloudfront.net/mp4HD/' + url.replace(/ /g, '%2B') + '.mp4',
+    mobile: 'https://d3yvfnmmtea7a.cloudfront.net/mobile/' + url.replace(/ /g, '%2B') + '.mp4',
     webmSD: 'https://d3yvfnmmtea7a.cloudfront.net/webmSD/' + url.replace(/ /g, '%2B') + '.webm',
     webmHD: 'https://d3yvfnmmtea7a.cloudfront.net/webmHD/' + url.replace(/ /g, '%2B') + '.webm',
     author: req.user._id,
@@ -144,7 +145,16 @@ function transcodeVideo(url) {
         Key: 'mp4SD/' + url.replace(/ /g, '+') + '.mp4',
         PresetId: '1351620000001-000020',
         Rotate: 'auto',
-        ThumbnailPattern: 'thumb-{resolution}-{count}',
+        Composition: [{
+          TimeSpan: {
+            Duration: '00:01:00.000',
+            StartTime: '0'
+          }
+        }],
+      }, {
+        Key: 'mobile/' + url.replace(/ /g, '+') + '.mp4',
+        PresetId: '1351620000001-100020',
+        Rotate: 'auto',
         Composition: [{
           TimeSpan: {
             Duration: '00:01:00.000',
@@ -155,7 +165,6 @@ function transcodeVideo(url) {
         Key: 'webmSD/' + url.replace(/ /g, '+') + '.webm',
         PresetId: '1412651222522-9agsmf',
         Rotate: 'auto',
-        ThumbnailPattern: 'thumb-{resolution}-{count}',
         Composition: [{
           TimeSpan: {
             Duration: '00:01:00.000',
@@ -166,7 +175,6 @@ function transcodeVideo(url) {
         Key: 'webmHD/' + url.replace(/ /g, '+') + '.webm',
         PresetId: '1412651133539-phi1xi',
         Rotate: 'auto',
-        ThumbnailPattern: 'thumb-{resolution}-{count}',
         Composition: [{
           TimeSpan: {
             Duration: '00:01:00.000',

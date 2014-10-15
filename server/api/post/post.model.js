@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var PostSchema = new Schema({
   mp4SD:  String,
   mp4HD:  String,
+  mobile:  String,
   webmSD:  String,
   webmHD:  String,
   poster: String,
