@@ -30,6 +30,7 @@
     "module": true,
     "inject": true,
     "it": true,
+    "sublime": true,
     "filepicker": true,
     "expect": true,
     "browser": true,
