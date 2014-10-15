@@ -10,7 +10,7 @@ AWS.config.region = 'us-west-2';
 // Get list of posts
 exports.index = function(req, res) {
   Post.find()
-    .populate('author', 'profile.name profile.party profile.picture position.office position.area email')
+    .populate('author', 'name party picture office area email')
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
