@@ -6,7 +6,7 @@ angular.module('stumpIoApp')
     $scope.user = User.get(); //I'll need to set this based on user selected
     $scope.posts = [];
 
-    angular.element(document).ready(function () {
+    $scope.$on('$viewContentLoaded', function () {
       sublime.load();
     });
 
