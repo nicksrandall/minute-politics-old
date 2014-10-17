@@ -5,14 +5,20 @@ angular.module('stumpIoApp')
     $scope.errors = {};
     $scope.isAdmin = Auth.isAdmin;
     $scope.parties = ['Republican', 'Democrat']; // I should find a way to dynamically generate this list?
-    $scope.hasPicture = $scope.user.picture ? true : false;
+    $scope.hasPicture = $scope.currentUser.picture ? true : false;
 
-    console.log($scope.user);
+    console.log($scope.currentUser);
 
     $scope.updateProfile = function(form) {
       // Hit the update endpoint with new data. Boom.
       if (form.$valid) {
-        $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser);
+        $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser)
+          .success(function() {
+            growl.success("Your profile information has been saved.");
+          })
+          .error(function() {
+            growl.error("There was a problem saving your profile information. Please try again.");
+          });
       }
     };
 

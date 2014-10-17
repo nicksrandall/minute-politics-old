@@ -3,17 +3,17 @@
 angular.module('stumpIoApp')
   .controller('UploadCtrl', function ($scope, $http, $state, growl) {
     $scope.tags = [];
-    $scope.disabled = false;
+    $scope.disabled = true;
     $scope.fileCalleback = function (file) {
       $scope.disabled = false;
       $scope.fileKey = file[0].key;
     };
     $scope.submit = function () {
-      $http.post('/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags, 'headline': $scope.headline })
-        .success(function(data, status, headers, config) {
+      $http.post('/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags, 'headline': $scope.headline, author: $scope.currentUser._id })
+        .success(function() {
           $state.go('uploadSuccess');
         })
-        .error(function(data, status, headers, config) {
+        .error(function() {
           growl.error("There was a problem uploading your video. Please try again.");
         });
     };

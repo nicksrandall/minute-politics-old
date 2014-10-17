@@ -19,7 +19,6 @@ angular.module('stumpIoApp')
       }
       $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser)
         .success(function(data) {
-          console.log(data);
           growl.success("You are " + person.followText + " " + person.name + ".");
         })
         .error(function() {
