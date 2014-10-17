@@ -12,7 +12,8 @@ angular.module('stumpIoApp')
         person.isFollowing = false;
         person.followText = 'not following';
       } else {
-        $scope.currentUser.following.push(person);
+        console.log(person.id, person._id);
+        $scope.currentUser.following.push(person._id);
         person.isFollowing = true;
         person.followText = 'following';
       }
