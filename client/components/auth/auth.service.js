@@ -10,14 +10,6 @@ angular.module('stumpIoApp')
     return {
 
       /**
-       * Returns current logged in user.
-       * @return {obj} The user object.
-       */
-      getUser: function () {
-        return currentUser;
-      },
-
-      /**
        * Authenticate user and save token
        *
        * @param  {Object}   user     - login info
@@ -107,6 +99,22 @@ angular.module('stumpIoApp')
        */
       getCurrentUser: function() {
         return currentUser;
+      },
+
+      /**
+       * This is make sure current user is set before issueing callback fn.
+       * @param  {Function} cb callback
+       */
+      resolveCurrentUser: function(cb) {
+        if(currentUser.hasOwnProperty('$promise')) {
+          currentUser.$promise.then(function() {
+            cb(currentUser);
+          }).catch(function() {
+            cb(currentUser);
+          });
+        } else {
+          cb(currentUser);
+        }
       },
 
       /**

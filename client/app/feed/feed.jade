@@ -17,7 +17,7 @@ div(ng-include='"components/navbar/navbar.html"')
         .col-xs-12
           hr
           p
-            a.btn.btn-lg.btn-block(href='#', role='button', ng-class='post.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
+            a.btn.btn-lg.btn-block(href='#', role='button', ng-class='post.author.isFollowing === true ? "btn-success" : "btn-default"') {{post.author.isFollowing === true ? 'Unfollow' : 'Follow'}}
     .col-sm-10
       .postTitle {{ post.headline || 'No Post Title' }}
       stump-video(post='post')

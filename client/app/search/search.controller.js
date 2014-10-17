@@ -3,7 +3,6 @@
 angular.module('stumpIoApp')
   .controller('SearchCtrl', function ($scope, $stateParams, Auth, $http, growl) {
     $scope.results = [];
-    console.log(Auth.getCurrentUser());
 
     $scope.follow = function (person) {
       if(person.isFollowing) {
@@ -22,10 +21,12 @@ angular.module('stumpIoApp')
         });
     };
 
-    $http.get('/api/users/name/' + $stateParams.name).success(function(results) {
-      $scope.results = results.map(function (item) {
-        item.isFollowing = _.contains(Auth.getCurrentUser().following, item._id);
-        return item;
+    Auth.resolveCurrentUser(function (currentUser) {
+      $http.get('/api/users/name/' + $stateParams.name).success(function(results) {
+        $scope.results = results.map(function (item) {
+          item.isFollowing = _.contains(currentUser.following, item._id);
+          return item;
+        });
       });
     });
   });
