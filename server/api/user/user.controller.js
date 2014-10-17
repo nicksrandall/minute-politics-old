@@ -51,7 +51,7 @@ exports.show = function (req, res, next) {
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
-    res.json(user.profile);
+    res.json(200, user);
   });
 };
 
@@ -101,6 +101,20 @@ exports.update = function(req, res) {
   });
 };
 
+// Updates an existing user in the DB.
+exports.follow = function(req, res) {
+  User.findById(req.user._id, function (err, currentUser) {
+    if (err) { return handleError(res, err); }
+    User.findById(req.params.id, function (error, user) {
+      currentUser.following.push(user);
+      currentUser.save(function (err) {
+        if (err) { return handleError(res, err); }
+        res.json(200, currentUser)
+      })
+    });
+  });
+};
+
 /**
  * Get my info
  */
@@ -111,7 +125,7 @@ exports.me = function(req, res, next) {
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
-    res.json(user);
+    res.json(200, user);
   });
 };
 

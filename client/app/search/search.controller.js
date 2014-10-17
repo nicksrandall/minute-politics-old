@@ -6,18 +6,14 @@ angular.module('stumpIoApp')
 
     $scope.follow = function (person) {
       if(person.isFollowing) {
-        $scope.currentUser.following.filter(function (item) {
-          return item !== person._id;
-        });
         person.isFollowing = false;
         person.followText = 'not following';
       } else {
         console.log(person.id, person._id);
-        $scope.currentUser.following.push(person._id);
         person.isFollowing = true;
         person.followText = 'following';
       }
-      $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser)
+      $http.get('/api/users/follow/' + person._id)
         .success(function(data) {
           growl.success("You are " + person.followText + " " + person.name + ".");
         })
