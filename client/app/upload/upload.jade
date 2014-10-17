@@ -1,20 +1,24 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container(ng-controller='UploadCtrl')
-  form.form-horizontal(role='form', method='POST')
+  form.form-horizontal(role='form')
     .form-group
       label.col-sm-2.control-label(for='video') Video
       .col-sm-8
         div(ng-show='disabled', filepicker='', path='/', pickerclass='btn btn-primary', container='modal', multiple='false', mimetype='video/*', callback='fileCalleback(file)') Upload Video
         span.uploadHelpText(ng-hide='disabled') Video Uploaded! Now add some category tags.
     .form-group
+      label.col-sm-2.control-label(for='headline') Headline
+      .col-sm-8
+        input.form-control(type='text', ng-model='headline', name='headline', ng-equired='true', ng-minlength='3', ng-maxlength='120', placeholder='A short headline for your post.')
+    .form-group
       label.col-sm-2.control-label(for='tags') Tags
       .col-sm-8
         tags-input(ng-model='tags', minLength='3', maxTags='3')
     .form-group
       .col-sm-offset-2.col-sm-8
-        button.btn.btn-primary(type='button', ng-click='submit()', ng-disabled='disabled')
+        button.btn.btn-primary(type='submit', ng-click='submit()', ng-disabled='disabled')
           span.ion-paper-airplane
           | Send
-
+  div(growl)
 appFooter

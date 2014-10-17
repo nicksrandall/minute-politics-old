@@ -6,6 +6,13 @@ angular.module('stumpIoApp')
       .state('upload', {
         url: '/upload',
         templateUrl: 'app/upload/upload.html',
-        controller: 'UploadCtrl'
+        controller: 'UploadCtrl',
+        authenticate: true
+      })
+      .state('uploadSuccess', {
+        url: '/upload/success',
+        templateUrl: 'app/upload/uploadSuccess.html',
+        controller: 'UploadSuccessCtrl',
+        authenticate: true
       });
   });

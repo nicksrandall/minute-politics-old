@@ -1,0 +1,8 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container(ng-controller='UploadCtrl')
+  h1 Success!
+  p Your video has been uploaded successfully. We'll let you know when it is ready to be viewed.
+  button.btn.btn-lg.btn-primary(ng-click='goToFeed()') Go to Video Feed
+
+appFooter

@@ -21,6 +21,13 @@ exports.index = function(req, res) {
   });
 };
 
+exports.name = function(req, res) {
+  User.findByName(req.params.name, function (err, users) {
+    if (err) { return handleError(res, err); }
+    res.json(200, users);
+  })
+};
+
 /**
  * Creates a new user
  */

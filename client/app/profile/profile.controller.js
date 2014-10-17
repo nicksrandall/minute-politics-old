@@ -3,10 +3,9 @@
 angular.module('stumpIoApp')
   .controller('ProfileCtrl', function ($scope, Auth, $sce, $http) {
     $scope.isAdmin = Auth.isAdmin;
-    $scope.user = Auth.getUser();
     $scope.posts = [];
 
-    $http.get('/api/posts/user/' + $scope.user._id).success(function(posts) {
+    $http.get('/api/posts/user/' + $scope.currentUser._id).success(function(posts) {
       $scope.posts = posts.map(function (item) {
         item.mp4SD = $sce.trustAsResourceUrl(item.mp4SD);
         item.mp4HD = $sce.trustAsResourceUrl(item.mp4HD);

@@ -4,7 +4,6 @@ angular.module('stumpIoApp')
   .controller('SettingsCtrl', function ($scope, Auth, $http) {
     $scope.errors = {};
     $scope.isAdmin = Auth.isAdmin;
-    $scope.user = Auth.getUser();
     $scope.parties = ['Republican', 'Democrat']; // I should find a way to dynamically generate this list?
     $scope.hasPicture = $scope.user.picture ? true : false;
 
@@ -13,7 +12,7 @@ angular.module('stumpIoApp')
     $scope.updateProfile = function(form) {
       // Hit the update endpoint with new data. Boom.
       if (form.$valid) {
-        $http.put('/api/users/' + $scope.user._id,  $scope.user);
+        $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser);
       }
     };
 
@@ -32,16 +31,16 @@ angular.module('stumpIoApp')
 
       filepicker.pickAndStore(pickerOptions, storeOptions, function (files) {
         var fileKey = files[0].key;
-        $scope.user.picture = fileKey;
+        $scope.currentUser.picture = fileKey;
         console.log(fileKey);
-        $http.put('/api/users/' + $scope.user._id,  $scope.user);
+        $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser);
       });
     };
 
     $scope.changePassword = function(form) {
       $scope.submitted = true;
       if(form.$valid) {
-        Auth.changePassword( $scope.user.oldPassword, $scope.user.newPassword )
+        Auth.changePassword( $scope.currentUser.oldPassword, $scope.currentUser.newPassword )
         .then( function() {
           $scope.message = 'Password successfully changed.';
         })

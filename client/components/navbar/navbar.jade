@@ -19,9 +19,8 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
         li(ng-show='isAdmin()', ng-class='{active: isActive("/upload")}')
           a(href='/upload') Upload Video
 
-        li(ng-show='isAdmin()', ng-class='{active: isActive("/admin")}')
-          a(href='/admin') Admin
-
+        //- li(ng-show='isAdmin()', ng-class='{active: isActive("/admin")}')
+        //-   a(href='/admin') Admin
       ul.nav.navbar-nav.navbar-right
         li(ng-hide='isLoggedIn()', ng-class='{active: isActive("/signup")}')
           a(href='/signup') Sign up
@@ -38,3 +37,9 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
 
         li(ng-show='isLoggedIn()', ng-class='{active: isActive("/logout")}')
           a(href='', ng-click='logout()') Logout
+
+      //- Search
+      form.navbar-form.navbar-right(role='search')
+        .form-group
+          input.form-control(type='text', ng-model='term', placeholder='Name')
+        button.btn.btn-default(type='submit', ng-click='search()') Search

@@ -10,6 +10,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 // Post Filters
+router.get('/followed_by/:id', controller.followed_by)
 router.get('/user/:id', controller.user);
 router.get('/tag/:tagName', controller.tag);
 

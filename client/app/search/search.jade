@@ -1,0 +1,15 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container(ng-repeat='person in results')
+  .row
+    .col-md-1.pull-left
+      img.img-responsive.img-circle.center-block(ng-if='person.picture', ng-src='{{person.picture | userPicture}}', width='45px', height='45px')
+      img.img-responsive.img-circle.center-block(ng-if='!person.picture', gravatar-src='person.email', gravatar-size='45')
+    .col-md-4.pull-left.searchName{{ person.name }}
+    .col-md-2.pull-right
+      btn.btn.btn-lg.btn-block(ng-click='follow(person)', ng-class='person.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
+  hr
+
+div(growl)
+
+appFooter

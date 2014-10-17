@@ -8,7 +8,8 @@ angular.module('stumpIoApp', [
     'ui.router',
     'ui.bootstrap',
     'ngTagsInput',
-    'ui.gravatar'
+    'ui.gravatar',
+    'angular-growl'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -53,4 +54,5 @@ angular.module('stumpIoApp', [
         }
       });
     });
+    $rootScope.currentUser = Auth.getUser();
   });

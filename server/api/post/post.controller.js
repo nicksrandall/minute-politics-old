@@ -19,9 +19,23 @@ exports.index = function(req, res) {
 };
 
 // Get list of posts for a specific user
+exports.followed_by = function(req, res) {
+  User.findById(req.params.id, function (err, user) {
+    if(err) { return handleError(res, err); }
+    Post.find()
+      .where('author').in(user.following)
+      .sort('-date')
+      .exec(function (err, posts) {
+        if (err) return res.status(400).send('Error firding posts.');
+        res.json(posts);
+      });
+  });
+};
+
+// Get list of posts for a specific user
 exports.user = function(req, res) {
   Post.find()
-    .where({ author: req.params.id })
+    .where('author').equals(req.params.id)
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
@@ -32,7 +46,7 @@ exports.user = function(req, res) {
 // Get list of posts for a specific user
 exports.tag = function(req, res) {
   Post.find()
-    .where({ tags: req.params.tagName }) // I need to check and makd sure this works.
+    .where('tags.text').equals(req.params.tagName)
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
