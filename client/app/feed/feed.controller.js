@@ -18,8 +18,6 @@ angular.module('stumpIoApp')
       url = '/api/posts/followed_by/' + $scope.currentUser._id;
     }
 
-    console.log(url);
-
     $http.get(url).success(function(posts) {
       $scope.posts = posts.map(function (item) {
         item.mp4SD = $sce.trustAsResourceUrl(item.mp4SD);

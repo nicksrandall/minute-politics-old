@@ -7,8 +7,6 @@ angular.module('stumpIoApp')
     $scope.parties = ['Republican', 'Democrat']; // I should find a way to dynamically generate this list?
     $scope.hasPicture = $scope.currentUser.picture ? true : false;
 
-    console.log($scope.currentUser);
-
     $scope.updateProfile = function(form) {
       // Hit the update endpoint with new data. Boom.
       if (form.$valid) {
