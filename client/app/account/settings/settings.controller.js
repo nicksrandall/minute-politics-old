@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('stumpIoApp')
-  .controller('SettingsCtrl', function ($scope, Auth, $http) {
+  .controller('SettingsCtrl', function ($scope, Auth, $http, growl) {
     $scope.errors = {};
     $scope.isAdmin = Auth.isAdmin;
     $scope.parties = ['Republican', 'Democrat']; // I should find a way to dynamically generate this list?
+    $scope.currentUser = Auth.getCurrentUser();
     $scope.hasPicture = $scope.currentUser.picture ? true : false;
 
     $scope.updateProfile = function(form) {
@@ -12,10 +13,10 @@ angular.module('stumpIoApp')
       if (form.$valid) {
         $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser)
           .success(function() {
-            growl.success("Your profile information has been saved.");
+            growl.success('Your profile information has been saved.');
           })
           .error(function() {
-            growl.error("There was a problem saving your profile information. Please try again.");
+            growl.error('There was a problem saving your profile information. Please try again.');
           });
       }
     };

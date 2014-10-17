@@ -18,7 +18,9 @@
     "filepicker": "*",
     "ng-tags-input": "2.1.1",
     "angular-gravatar": "~0.2.1",
-    "angular-growl-v2": "~0.7.0"
+    "angular-growl-v2": "~0.7.0",
+    "angular-animate": "~1.3.0",
+    "bootstrap-social": "~4.8.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

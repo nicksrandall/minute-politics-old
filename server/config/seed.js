@@ -36,14 +36,14 @@ User.find({}).remove(function() {
     name: 'Test User',
     email: 'test@test.com',
     password: 'test',
-    following: new Array()
+    following: []
   }, {
     provider: 'local',
     role: 'admin',
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin',
-    following: new Array()
+    following: []
   }, function() {
       console.log('finished populating users');
     }

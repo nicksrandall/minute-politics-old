@@ -15,6 +15,7 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
       <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css" />
+      <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
       <!-- endbower -->
       <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css">
     <!-- endbuild -->
@@ -43,6 +44,26 @@
       ga('send', 'pageview');
     </script>
 
+    <!-- Facebook: Required for social sharing. -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1541269176108882',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -66,6 +87,7 @@
       <script src="bower_components/angular-gravatar/build/md5.js"></script>
       <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
       <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->

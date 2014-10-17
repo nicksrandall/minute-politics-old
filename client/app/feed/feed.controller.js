@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('stumpIoApp')
-  .controller('FeedCtrl', function ($scope, $sce, $http, socket, $stateParams) {
+  .controller('FeedCtrl', function ($scope, $sce, Auth, $http, socket, $stateParams) {
     $scope.posts = [];
     $scope.newPosts = [];
+    console.log(Auth.getCurrentUser());
 
     socket.syncUpdates('posts', $scope.newPosts, function (event, item, array) {
       console.log(event, item, array);
@@ -15,7 +16,7 @@ angular.module('stumpIoApp')
     } else if ($stateParams && $stateParams.filter === 'all') {
       url = '/api/posts';
     } else {
-      url = '/api/posts/followed_by/' + $scope.currentUser._id;
+      url = '/api/posts/followed_by/' + Auth.getCurrentUser()._id;
     }
 
     $http.get(url).success(function(posts) {
@@ -25,6 +26,7 @@ angular.module('stumpIoApp')
         item.mobile = $sce.trustAsResourceUrl(item.mobile);
         item.webmSD = $sce.trustAsResourceUrl(item.webmSD);
         item.webmHD = $sce.trustAsResourceUrl(item.webmHD);
+        item.isFollowing = _.contains(Auth.getCurrentUser().following, item._id);
         return item;
       });
       sublime.load();

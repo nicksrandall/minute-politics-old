@@ -9,7 +9,8 @@ angular.module('stumpIoApp', [
     'ui.bootstrap',
     'ngTagsInput',
     'ui.gravatar',
-    'angular-growl'
+    'angular-growl',
+    'ngAnimate'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, growlProvider) {
     $urlRouterProvider
@@ -17,6 +18,7 @@ angular.module('stumpIoApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+
     growlProvider.globalTimeToLive(5000);
   })
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
@@ -49,7 +51,6 @@ angular.module('stumpIoApp', [
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
-        $rootScope.currentUser = Auth.getCurrentUser();
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }

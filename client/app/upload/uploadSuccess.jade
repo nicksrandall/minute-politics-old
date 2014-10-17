@@ -3,6 +3,26 @@ div(ng-include='"components/navbar/navbar.html"')
 .container(ng-controller='UploadCtrl')
   h1 Success!
   p Your video has been uploaded successfully. We'll let you know when it is ready to be viewed.
-  button.btn.btn-lg.btn-primary(ng-click='goToFeed()') Go to Video Feed
+
+  .row
+    .col-md-3
+      a.btn.btn-block.btn-lg.btn-social.btn-facebook(ng-click='shareToFacebook()')
+        i.fa.fa-facebook
+        | Share to Facebook
+    .col-md-3
+      a.btn.btn-block.btn-lg.btn-social.btn-twitter
+        i.fa.fa-twitter
+        | Share to Twitter
+    .col-md-3
+      a.btn.btn-block.btn-lg.btn-social.btn-google-plus
+        i.fa.fa-google-plus
+        | Share to Google
+    .col-md-3
+      a.btn.btn-block.btn-lg.btn-social.btn-pinterest
+        i.fa.fa-pinterest
+        | Share to Pinterest
+
+  //- .row
+  //-   button.btn.btn-lg.btn-primary(ng-click='goToFeed()') Go to Video Feed
 
 appFooter

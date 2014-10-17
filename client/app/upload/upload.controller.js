@@ -8,20 +8,36 @@ angular.module('stumpIoApp')
       $scope.disabled = false;
       $scope.fileKey = file[0].key;
     };
+
+    $scope.shareToFacebook = function () {
+      /* jshint ignore:start */
+      // We need to ignore this because it comes from Facebook.
+      FB.ui({
+       method: 'share_open_graph',
+       action_type: 'og.likes',
+       action_properties: JSON.stringify({
+        object:'http://minutepolitics-minutepolitics.rhcloud.com',
+       })
+      }, function(response){
+        console.log(response);
+      });
+      /* jshint ignore:end */
+    };
+
     $scope.submit = function () {
       $http.post('/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags, 'headline': $scope.headline })
         .success(function() {
           $state.go('uploadSuccess');
         })
         .error(function() {
-          growl.error("There was a problem uploading your video. Please try again.");
+          growl.error('There was a problem uploading your video. Please try again.');
         });
     };
   })
   .controller('UploadSuccessCtrl', function ($scope, $state) {
     $scope.goToFeed = function () {
       $state.go('feed');
-    }
+    };
   })
   .directive('filepicker', function(){
     return {
