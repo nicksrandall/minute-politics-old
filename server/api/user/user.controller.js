@@ -106,9 +106,10 @@ exports.follow = function(req, res) {
   User.findById(req.user._id, function (err, currentUser) {
     if (err) { return handleError(res, err); }
     User.findById(req.params.id, function (error, user) {
+      if (error) { return handleError(res, error); }
       currentUser.following.push(user);
-      currentUser.save(function (err) {
-        if (err) { return handleError(res, err); }
+      currentUser.save(function (error2) {
+        if (error2) { return handleError(res, error2); }
         res.json(200, currentUser)
       })
     });
