@@ -5,7 +5,6 @@ angular.module('stumpIoApp')
     $scope.results = [];
 
     $scope.follow = function (person) {
-      console.log(person._id);
       if(person.isFollowing) {
         $scope.currentUser.following.filter(function (item) {
           return item !== person._id;
@@ -13,7 +12,7 @@ angular.module('stumpIoApp')
         person.isFollowing = false;
         person.followText = 'not following';
       } else {
-        $scope.currentUser.following.push(person._id);
+        $scope.currentUser.following.push(person);
         person.isFollowing = true;
         person.followText = 'following';
       }
