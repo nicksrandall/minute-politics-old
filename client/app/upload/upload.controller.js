@@ -9,7 +9,7 @@ angular.module('stumpIoApp')
       $scope.fileKey = file[0].key;
     };
     $scope.submit = function () {
-      $http.post('/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags, 'headline': $scope.headline, author: $scope.currentUser._id })
+      $http.post('/api/posts',  { 'videoURL' : $scope.fileKey, 'tags': $scope.tags, 'headline': $scope.headline })
         .success(function() {
           $state.go('uploadSuccess');
         })
