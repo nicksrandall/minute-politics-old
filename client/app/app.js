@@ -52,7 +52,7 @@ angular.module('stumpIoApp', [
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }
+        $rootScope.currentUser = Auth.getCurrentUser();
       });
     });
-    $rootScope.currentUser = Auth.getUser();
   });
