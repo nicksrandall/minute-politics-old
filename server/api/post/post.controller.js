@@ -23,7 +23,7 @@ exports.followed_by = function(req, res) {
   User.findById(req.params.id, function (err, user) {
     if(err) { return handleError(res, err); }
     Post.find()
-      .where('author').in(user.following)
+      .where('author').in( _.union(user.following, [req.user._id]) )
       .sort('-date')
       .exec(function (err, posts) {
         if (err) return res.status(400).send('Error firding posts.');
