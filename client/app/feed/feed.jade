@@ -17,10 +17,11 @@ div(ng-include='"components/navbar/navbar.html"')
         .col-xs-12
           hr
           p
-            a.btn.btn-primary.btn-lg.btn-block(href='#', role='button') Follow
+            a.btn.btn-lg.btn-block(href='#', role='button') Follow
     .col-sm-10
+      span.postTitle {{post.headline}}
       stump-video(post='post')
   hr
-
 div(growl)
+
 appFooter
