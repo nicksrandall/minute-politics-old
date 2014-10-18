@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('stumpIoApp')
-  .controller('FeedCtrl', function ($scope, $sce, Auth, $http, socket, $stateParams) {
+  .controller('FeedCtrl', function ($scope, $sce, Auth, $http, socket, $timeout, $stateParams) {
     $scope.posts = [];
     $scope.newPosts = [];
+
+    $scope.$watch('posts', function() {
+      sublime.load();
+    });
 
     socket.syncUpdates('posts', $scope.newPosts, function (event, item, array) {
       console.log(event, item, array);
@@ -29,7 +33,6 @@ angular.module('stumpIoApp')
           item.isFollowing = _.contains(currentUser.following, item.author._id);
           return item;
         });
-        sublime.load();
       });
     });
 

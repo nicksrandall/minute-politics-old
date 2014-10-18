@@ -37,6 +37,7 @@ exports.followed_by = function(req, res) {
 exports.user = function(req, res) {
   Post.find()
     .where('author').equals(req.params.id)
+    .populate('author', 'name party picture office area email')
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
@@ -48,6 +49,7 @@ exports.user = function(req, res) {
 exports.tag = function(req, res) {
   Post.find()
     .where('tags.text').equals(req.params.tagName)
+    .populate('author', 'name party picture office area email')
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
