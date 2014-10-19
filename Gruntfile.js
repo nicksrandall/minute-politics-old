@@ -52,7 +52,7 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        url: 'http://localhost:<%= express.options.port %>'
+        url: 'http://local.minutepolitics-minutepolitics.rhcloud.com:<%= express.options.port %>'
       }
     },
     watch: {

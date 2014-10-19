@@ -1,5 +1,5 @@
 .video-container
-  video.sublime(preload='none', data-autoresize='fit', width='auto', height='auto', id='{{ "video_" + $index }}', data-uid='{{ post._id }}')
+  video.video-js.vjs-default-skin(preload='none', data-autoresize='fit', width='auto', height='auto', id='{{ "video_" + $index }}')
     source(src='{{ post.mp4SD }}')
     source(src='{{ post.mp4HD }}', data-quality='hd')
     source(src='{{ post.mobile }}')

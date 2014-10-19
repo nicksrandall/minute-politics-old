@@ -108,6 +108,8 @@ exports.follow = function(req, res) {
     User.findById(req.params.id, function (error, user) {
       if (error) { return handleError(res, error); }
       currentUser.following.push(user);
+      user.followers.push(currentUser);
+      user.followCount += 1;
       currentUser.save(function (error2) {
         if (error2) { return handleError(res, error2); }
         res.json(200, currentUser)

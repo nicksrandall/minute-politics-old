@@ -5,7 +5,6 @@
 'use strict';
 
 var errors = require('./components/errors');
-var SNSClient = require('aws-snsclient');
 
 module.exports = function(app) {
 
@@ -15,18 +14,6 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
-
-  var auth = {
-      region: 'us-west-2',
-      account: '484021737921',
-      topic: 'stump-transcode-done'
-  };
-
-  var snsClient = new SNSClient(auth, function(err, message) {
-      console.log(message);
-  });
-
-  app.post('/sns', snsClient);
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
