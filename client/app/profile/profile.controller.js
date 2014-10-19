@@ -14,7 +14,6 @@ angular.module('stumpIoApp')
         item.webmHD = $sce.trustAsResourceUrl(item.webmHD);
         return item;
       });
-      sublime.load();
     });
 
   });

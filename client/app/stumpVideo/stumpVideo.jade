@@ -1,10 +1,10 @@
 .video-container
-  video.video-js.vjs-default-skin(preload='none', data-autoresize='fit', width='auto', height='auto', id='{{ "video_" + $index }}')
-    source(src='{{ post.mp4SD }}')
-    source(src='{{ post.mp4HD }}', data-quality='hd')
-    source(src='{{ post.mobile }}')
-    source(src='{{ post.webmSD }}')
-    source(src='{{ post.webmSD }}', data-quality='hd')
+  video.video-js.vjs-default-skin(width='auto', height='auto', id='{{ "video_" + $index }}')
+    //- source(src='{{ post.mobile }}', type='video/mp4')
+    //- source(src='{{ post.mp4SD }}',  type='video/mp4')
+    //- source(src='{{ post.mp4HD }}',  type='video/mp4')
+    //- source(src='{{ post.webmSD }}', type='video/webm')
+    //- source(src='{{ post.webmSD }}', type='video/webm')
   .pull-left
     span(style='line-height: 38px;') Tags:&nbsp;
       a.tag(ng-repeat='tag in post.tags', href='{{"/feed/tag/" + tag.text}}') {{tag.text}}

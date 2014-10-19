@@ -5,10 +5,6 @@ angular.module('stumpIoApp')
     $scope.posts = [];
     $scope.newPosts = [];
 
-    $scope.$watch('posts', function() {
-      sublime.load();
-    });
-
     socket.syncUpdates('posts', $scope.newPosts, function (event, item, array) {
       console.log(event, item, array);
     });
@@ -25,11 +21,24 @@ angular.module('stumpIoApp')
 
       $http.get(url).success(function(posts) {
         $scope.posts = posts.map(function (item) {
-          item.mp4SD = $sce.trustAsResourceUrl(item.mp4SD);
-          item.mp4HD = $sce.trustAsResourceUrl(item.mp4HD);
-          item.mobile = $sce.trustAsResourceUrl(item.mobile);
-          item.webmSD = $sce.trustAsResourceUrl(item.webmSD);
-          item.webmHD = $sce.trustAsResourceUrl(item.webmHD);
+          item.src = [{
+              file: item.mobile,
+              label: "480p SD",
+            }, {
+              file: item.mp4SD,
+              label: "720p HD",
+              "default": "true"
+            }, {
+              file: item.mp4HD,
+              label: "1080p HD"
+            }, {
+              file: item.webmSD,
+              label: "720p HD"
+            }, {
+              file: item.webmHD,
+              label: "1080p HD"
+            }];
+
           item.isFollowing = _.contains(currentUser.following, item.author._id);
           return item;
         });

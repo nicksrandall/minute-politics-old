@@ -20,7 +20,14 @@ div(ng-include='"components/navbar/navbar.html"')
             a.btn.btn-lg.btn-block(href='#', role='button', ng-class='post.isFollowing === true ? "btn-success" : "btn-default"') {{post.isFollowing === true ? 'Unfollow' : 'Follow'}}
     .col-sm-10
       .postTitle {{ post.headline || 'No Post Title' }}
-      stump-video(post='post')
+      .video-container
+        stump-video(post='post', vid='{{ "video_" + $index }}')
+        .pull-left
+          span(style='line-height: 38px;') Tags:&nbsp;
+            a.tag(ng-repeat='tag in post.tags', href='{{"/feed/tag/" + tag.text}}') {{tag.text}}
+        .btn-group.pull-right
+          a.btn.btn-default(href='#', role='button') {{post.likes + ' Likes'}}
+          a.btn.btn-default(href='#', role='button') {{post.likes + ' Shares'}}
   hr
 div(growl)
 
