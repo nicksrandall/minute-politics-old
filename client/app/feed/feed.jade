@@ -1,5 +1,9 @@
 div(ng-include='"components/navbar/navbar.html"')
 
+.noPosts(ng-show='posts.lenth < 1')
+  h1 It's lonely in here.
+  P You can start following politicians by seaching form them and clicking the "follow" button.
+
 .container(ng-repeat='post in posts')
   h2.mainTitle(ng-if='mainTitle') {{mainTitle}}
   .row
@@ -29,7 +33,7 @@ div(ng-include='"components/navbar/navbar.html"')
           span(style='line-height: 38px;') Tags:&nbsp;
             a.tag(ng-repeat='tag in post.tags', href='{{"/feed/tag/" + tag.text}}') {{tag.text}}
         .btn-group.pull-right
-          a.btn.btn-default(ng-click='like(post)', role='button') {{post.likes + ' Likes'}}
+          a.btn(ng-click='like(post, likeCallback)', role='button' ng-class='post.btnClass') {{post.likes + ' Likes'}}
           a.btn.btn-default(href='#', role='button') {{post.shares + ' Shares'}}
   hr
 div(growl)

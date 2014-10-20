@@ -99,7 +99,8 @@ exports.create = function(req, res) {
     mobile: 'https://d3yvfnmmtea7a.cloudfront.net/mobile/' + url.replace(/ /g, '%2B') + '.mp4',
     webmSD: 'https://d3yvfnmmtea7a.cloudfront.net/webmSD/' + url.replace(/ /g, '%2B') + '.webm',
     webmHD: 'https://d3yvfnmmtea7a.cloudfront.net/webmHD/' + url.replace(/ /g, '%2B') + '.webm',
-    author: req.user._id,
+    author: req.user,
+    headline: req.body.headline,
     tags: req.body.tags,
     hidden: true,
     likes: 0

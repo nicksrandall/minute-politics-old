@@ -3,10 +3,10 @@
 angular.module('stumpIoApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('search', {
-        url: '/search',
-        templateUrl: 'app/search/search.html',
-        controller: 'SearchCtrl',
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'app/welcome/welcome.html',
+        controller: 'WelcomeCtrl',
         authenticate: true
       });
   });

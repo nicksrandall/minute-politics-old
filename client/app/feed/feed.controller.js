@@ -1,14 +1,29 @@
 'use strict';
 
 angular.module('stumpIoApp')
-  .controller('FeedCtrl', function ($scope, $sce, Auth, $http, socket, $stateParams, $state, userAction) {
+  .controller('FeedCtrl', function ($scope, $sce, Auth, $http, socket, $stateParams, $state, $timeout, userAction) {
     $scope.posts = [];
     $scope.newPosts = [];
     $scope.goToProfile = userAction.goToProfile;
+    $scope.btnClass = 'btn-default';
 
     socket.syncUpdates('posts', $scope.newPosts, function (event, item, array) {
       console.log(event, item, array);
     });
+
+    $scope.likeCallback = function (canLike, post) {
+      if (canLike) {
+        post.btnClass = 'btn-success';
+        $timeout(function () {
+          post.btnClass = 'btn-default';
+        }, 250);
+      } else {
+        post.btnClass = 'btn-danger';
+        $timeout(function () {
+          post.btnClass = 'btn-default';
+        }, 250);
+      }
+    };
 
     $scope.like = userAction.like;
 
@@ -42,7 +57,7 @@ angular.module('stumpIoApp')
               file: item.webmHD,
               label: '1080p HD'
             }];
-
+          item.btnClass = 'btn-default';
           item.isFollowing = _.contains(currentUser.following, item.author._id);
           return item;
         });

@@ -109,7 +109,7 @@ exports.follow = function(req, res) {
       if (error) { return handleError(res, error); }
       currentUser.following.push(user);
       user.followers.push(currentUser);
-      user.followCount += 1;
+      user.followCount = parseInt(user.followCount || 0) + 1;
       user.save(function (error3) {
         if (error3) { return handleError(res, error3); }
       });

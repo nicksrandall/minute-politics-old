@@ -54,10 +54,7 @@ angular.module('stumpIoApp')
       },
       like: function (post, cb) {
         if (!_.contains(post.likers, currentUser._id)) {
-          $http.post('/api/posts/like/' + post._id)
-            .success(function(post) {
-              console.log(post);
-            });
+          $http.post('/api/posts/like/' + post._id);
           post.likes++;
           cb(true, post);
         } else {

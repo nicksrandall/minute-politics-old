@@ -16,7 +16,7 @@ angular.module('stumpIoApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $location.path('/welcome');
         })
         .catch( function(err) {
           err = err.data;
