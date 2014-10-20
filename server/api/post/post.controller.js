@@ -158,6 +158,7 @@ function handleError(res, err) {
  */
 function transcodeVideo(url) {
   var elastictranscoder = new AWS.ElasticTranscoder();
+  var newUrl = url.replace(/ /g, '+');
   var params = {
     Input: { /* required */
       AspectRatio: 'auto',
@@ -169,10 +170,9 @@ function transcodeVideo(url) {
     },
     PipelineId: '1407091689058-oeztcu',
     Outputs: [{
-        Key: 'mp4HD/' + url.replace(/ /g, '+') + '.mp4',
+        Key: 'mp4HD/' + newUrl + '.mp4',
         PresetId: '1351620000001-100070',
         Rotate: 'auto',
-        ThumbnailPattern: 'thumb-{resolution}-{count}',
         Composition: [{
           TimeSpan: {
             Duration: '00:01:00.000',
@@ -180,7 +180,7 @@ function transcodeVideo(url) {
           }
         }],
       }, {
-        Key: 'mp4SD/' + url.replace(/ /g, '+') + '.mp4',
+        Key: 'mp4SD/' + newUrl + '.mp4',
         PresetId: '1351620000001-000020',
         Rotate: 'auto',
         Composition: [{
@@ -190,8 +190,9 @@ function transcodeVideo(url) {
           }
         }],
       }, {
-        Key: 'mobile/' + url.replace(/ /g, '+') + '.mp4',
+        Key: 'mobile/' + newUrl + '.mp4',
         PresetId: '1351620000001-100020',
+        ThumbnailPattern: newUrl + '-{count}',
         Rotate: 'auto',
         Composition: [{
           TimeSpan: {
@@ -200,7 +201,7 @@ function transcodeVideo(url) {
           }
         }],
       }, {
-        Key: 'webmSD/' + url.replace(/ /g, '+') + '.webm',
+        Key: 'webmSD/' + newUrl + '.webm',
         PresetId: '1412651222522-9agsmf',
         Rotate: 'auto',
         Composition: [{
@@ -210,7 +211,7 @@ function transcodeVideo(url) {
           }
         }],
       }, {
-        Key: 'webmHD/' + url.replace(/ /g, '+') + '.webm',
+        Key: 'webmHD/' + newUrl + '.webm',
         PresetId: '1412651133539-phi1xi',
         Rotate: 'auto',
         Composition: [{

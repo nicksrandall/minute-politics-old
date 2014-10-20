@@ -1,6 +1,6 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.noPosts(ng-show='posts.lenth < 1')
+.noPosts(ng-show='{{posts.lenth < 1}}')
   h1 It's lonely in here.
   P You can start following politicians by seaching form them and clicking the "follow" button.
 
