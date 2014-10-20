@@ -49,9 +49,6 @@ angular.module('stumpIoApp', [
   })
 
   .run(function ($rootScope, $location, Auth) {
-    $rootScope.$on('socket:SNS', function (ev, data) {
-      console.log('SOCKET', ev, data);
-    });
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {

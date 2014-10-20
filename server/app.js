@@ -32,7 +32,7 @@ require('./routes')(app);
 var auth = {
   region: 'us-west-2',
   account: '484021737921',
-  topic: 'stump-transcode-done'
+  topic: 'Stump-Transcode-Done'
 };
 
 var snsClient = new SNSClient(auth, function(err, message) {
