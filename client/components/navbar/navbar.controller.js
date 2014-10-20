@@ -5,9 +5,6 @@ angular.module('stumpIoApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }, {
-      'title': 'About',
-      'link': '/about'
     }];
 
     $scope.isCollapsed = true;

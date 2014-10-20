@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -20,7 +21,35 @@ var PostSchema = new Schema({
   }],
   channels: [String],
   hidden: { type: Boolean, default: false },
-  likes: { type: Number, default: 0 }
+  likes: { type: Number, default: 0 },
+  shares: { type: Number, default: 0 },
 });
+
+PostSchema.methods = {
+  incrShares: function () {
+      this.shares += 1;
+      this.save();
+  },
+  incrLikes: function (user) {
+    console.log(this.likers, user._id.toString());
+    console.log(_.contains(this.likers, user._id.toString()))
+    if (!_.contains(this.likers.map(function (item) { return item.toString(); }), user._id.toString())) {
+      this.likers.push(user);
+      this.likes += 1;
+      this.save();
+      return true;
+    } else {
+      return false;
+    }
+  },
+  decrShares: function () {
+    this.shares -= 1;
+    this.save();
+  },
+  decrLikes: function () {
+    this.likes -= 1;
+    this.save();
+  }
+}
 
 module.exports = mongoose.model('Post', PostSchema);

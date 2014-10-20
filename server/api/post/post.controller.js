@@ -14,7 +14,7 @@ exports.index = function(req, res) {
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
-      res.json(posts);
+      res.json(200, posts);
     });
 };
 
@@ -28,7 +28,7 @@ exports.followed_by = function(req, res) {
       .sort('-date')
       .exec(function (err, posts) {
         if (err) return res.status(400).send('Error firding posts.');
-        res.json(posts);
+        res.json(200, posts);
       });
   });
 };
@@ -41,7 +41,7 @@ exports.user = function(req, res) {
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
-      res.json(posts);
+      res.json(200, posts);
     });
 };
 
@@ -53,7 +53,7 @@ exports.tag = function(req, res) {
     .sort('-date')
     .exec(function (err, posts) {
       if (err) return res.status(400).send('Error firding posts.');
-      res.json(posts);
+      res.json(200, posts);
     });
 };
 
@@ -62,7 +62,29 @@ exports.show = function(req, res) {
   Post.findById(req.params.id, function (err, post) {
     if(err) { return handleError(res, err); }
     if(!post) { return res.send(404); }
-    return res.json(post);
+    return res.json(200, post);
+  });
+};
+
+exports.like = function(req, res) {
+  Post.findById(req.params.id, function (err, post) {
+    if(err) { return handleError(res, err); }
+    if(!post) { return res.send(404); }
+    var canLike = post.incrLikes(req.user);
+    if (canLike) {
+      res.json(200, post)
+    } else {
+      res.json(403, post);
+    }
+  });
+};
+
+exports.share = function(req, res) {
+  Post.findById(req.params.id, function (err, post) {
+    if(err) { return handleError(res, err); }
+    if(!post) { return res.send(404); }
+    post.incrLikes();
+    res.json(200, post)
   });
 };
 
@@ -82,8 +104,6 @@ exports.create = function(req, res) {
     hidden: true,
     likes: 0
   });
-
-  console.log(req.user);
 
   User.findOne({
     _id: req.user._id

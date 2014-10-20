@@ -10,6 +10,7 @@ angular.module('stumpIoApp', [
     'ngTagsInput',
     'ui.gravatar',
     'angular-growl',
+    'angularMoment',
     'ngAnimate'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, growlProvider) {

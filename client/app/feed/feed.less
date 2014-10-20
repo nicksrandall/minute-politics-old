@@ -13,6 +13,9 @@
 .feedName {
   font-size: 24px;
   font-weight: 700;
+  padding-top: 8%;
+  display: block;
+  cursor: pointer;
 }
 .video-container {
   padding: 12px 0;
@@ -25,9 +28,6 @@
 .profileImageFeed img.Democrat {
   border: 4px solid red;
 }
-.feedName {
-  padding-top: 8%;
-}
 .tag:after {
   content: ', '
 }
@@ -35,10 +35,18 @@
   content: ''
 }
 
-// VIDEO JS
-// .video-js {
-//   padding-top: 56.25%;
-// }
-// .vjs-fullscreen {
-//   padding-top: 0px;
-// }
+.postTitle {
+  float: left;
+  font-size: 24px;
+  line-height: 48px;
+  font-weight: 600;
+}
+.postDate {
+  float: right;
+  line-height: 48px;
+  .clearfix();
+}
+
+.mainTitle {
+  margin-bottom: 20px;
+}

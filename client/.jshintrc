@@ -31,7 +31,7 @@
     "module": true,
     "inject": true,
     "it": true,
-    "sublime": true,
+    "jwplayer": true,
     "filepicker": true,
     "expect": true,
     "browser": true,

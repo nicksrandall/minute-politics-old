@@ -1,8 +1,20 @@
 'use strict';
 
 angular.module('stumpIoApp')
-  .controller('SearchCtrl', function ($scope, $stateParams, Auth, $http, growl) {
+  .controller('SearchCtrl', function ($scope, $stateParams, Auth, $http, growl, userAction) {
     $scope.results = [];
+    $scope.goToProfile = userAction.goToProfile;
+
+    $scope.status = {
+      isopen: false,
+      selection: 'Names'
+    };
+
+    $scope.setSearch = function(thing) {
+      console.log(thing);
+      $scope.status.selection = thing;
+    };
+
 
     $scope.follow = function (person) {
       if(person.isFollowing) {
@@ -11,22 +23,19 @@ angular.module('stumpIoApp')
       } else {
         person.isFollowing = true;
         person.followText = 'following';
+        userAction.follow(person);
       }
-      $http.get('/api/users/follow/' + person._id)
-        .success(function() {
-          growl.success('You are ' + person.followText + ' ' + person.name + '.');
-        })
-        .error(function() {
-          growl.error('There was a problem.');
-        });
     };
 
-    Auth.resolveCurrentUser(function (currentUser) {
-      $http.get('/api/users/name/' + $stateParams.name).success(function(results) {
-        $scope.results = results.map(function (item) {
-          item.isFollowing = _.contains(currentUser.following, item._id);
-          return item;
-        });
-      });
-    });
+    $scope.search = function (term) {
+      switch ($scope.status.selection) {
+        case 'Names':
+          userAction.searchByName(term, function (results) {
+            $scope.results = results;
+          });
+          break;
+        default:
+          console.log('You can\'t serach that');
+      }
+    };
   });

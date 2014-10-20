@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 section.profile
   .container-fluid.profile-page
     .row
-      .col-md-3.profile-info
+      .col-md-2.profile-info
         .row
           .col-xs-4.col-sm-12
             img.img-responsive.img-circle.profileImage(ng-if='user.picture', ng-src='{{user.picture | userPicture}}', width='250px', height='250px', class='{{user.party}}')
@@ -18,17 +18,20 @@ section.profile
             hr
             p
               a.btn.btn-primary.btn-lg.btn-block(href='#', role='button') Follow
-      .col-md-6.profile-videos
+      .col-md-7.profile-videos
         div(ng-repeat='post in posts')
-          stump-video(post='post')
+          .postTitle {{ post.headline || 'No Post Title' }}
+          .postDate
+            span(am-time-ago='post.date')
+          .video-container
+            stump-video(post='post', vid='{{ "video_" + $index }}')
+            .pull-left
+              span(style='line-height: 38px;') Tags:&nbsp;
+                a.tag(ng-repeat='tag in post.tags', href='{{"/feed/tag/" + tag.text}}') {{tag.text}}
+            .btn-group.pull-right
+              a.btn.btn-default(href='#', role='button') {{post.likes + ' Likes'}}
+              a.btn.btn-default(href='#', role='button') {{post.likes + ' Shares'}}
       .col-md-3.profile-actions
         p action items go here
 
-footer.footer
-  .container
-    p
-      | Stump.io
-      = ' | '
-      a(href='https://twitter.com/nicksrandall') @nicksrandall
-      = ' | '
-      a(href='https://nickrandall.com') Issues
+app-footer(ng-model='currentUser')

@@ -27,10 +27,6 @@ div(ng-include='"components/navbar/navbar.html"')
         .col-sm-4
           input.form-control(type='text', name='location', id='location', ng-model='currentUser.location')
       .form-group
-        label.col-sm-2.control-label(for='website') Website
-        .col-sm-4
-          input.form-control(type='text', name='website', id='website', ng-model='currentUser.website')
-      .form-group
         label.col-sm-2.control-label(for='party') Political Party
         .col-sm-4
           select.form-control(name='party', id='party', ng-model='currentUser.party', ng-options='party for party in parties')
@@ -44,6 +40,10 @@ div(ng-include='"components/navbar/navbar.html"')
           label.col-sm-2.control-label(for='area') Political Office Area
           .col-sm-4
             input.form-control(type='text', name='area', id='area', ng-model='currentUser.area')
+        .form-group
+          label.col-sm-2.control-label(for='website') Website
+          .col-sm-4
+            input.form-control(type='text', name='website', id='website', ng-model='currentUser.website')
 
       .form-group
         label.col-sm-2.control-label(for='gravatar') Gravatar

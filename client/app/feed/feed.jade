@@ -1,6 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container(ng-repeat='post in posts')
+  h2.mainTitle(ng-if='mainTitle') {{mainTitle}}
   .row
     .col-sm-2
       .row
@@ -11,7 +12,7 @@ div(ng-include='"components/navbar/navbar.html"')
         hr.hidden-xs
         .col-xs-8.col-sm-12
           div.feedName
-            p.feedDescription.feedName {{post.author.name}}
+            a.feedDescription.feedName(ng-click='goToProfile(post.author._id)') {{post.author.name}}
             p.feedDescription.feedPosition {{post.author.office}}
             p.feedDescription.feedArea {{post.author.area}}
         .col-xs-12
@@ -20,14 +21,16 @@ div(ng-include='"components/navbar/navbar.html"')
             a.btn.btn-lg.btn-block(href='#', role='button', ng-class='post.isFollowing === true ? "btn-success" : "btn-default"') {{post.isFollowing === true ? 'Unfollow' : 'Follow'}}
     .col-sm-10
       .postTitle {{ post.headline || 'No Post Title' }}
+      .postDate
+        span(am-time-ago='post.date')
       .video-container
         stump-video(post='post', vid='{{ "video_" + $index }}')
         .pull-left
           span(style='line-height: 38px;') Tags:&nbsp;
             a.tag(ng-repeat='tag in post.tags', href='{{"/feed/tag/" + tag.text}}') {{tag.text}}
         .btn-group.pull-right
-          a.btn.btn-default(href='#', role='button') {{post.likes + ' Likes'}}
-          a.btn.btn-default(href='#', role='button') {{post.likes + ' Shares'}}
+          a.btn.btn-default(ng-click='like(post)', role='button') {{post.likes + ' Likes'}}
+          a.btn.btn-default(href='#', role='button') {{post.shares + ' Shares'}}
   hr
 div(growl)
 

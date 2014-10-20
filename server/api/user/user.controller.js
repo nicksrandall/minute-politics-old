@@ -110,10 +110,13 @@ exports.follow = function(req, res) {
       currentUser.following.push(user);
       user.followers.push(currentUser);
       user.followCount += 1;
+      user.save(function (error3) {
+        if (error3) { return handleError(res, error3); }
+      });
       currentUser.save(function (error2) {
         if (error2) { return handleError(res, error2); }
         res.json(200, currentUser)
-      })
+      });
     });
   });
 };

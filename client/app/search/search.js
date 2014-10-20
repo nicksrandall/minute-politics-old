@@ -4,7 +4,7 @@ angular.module('stumpIoApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('search', {
-        url: '/search/user/:name',
+        url: '/search',
         templateUrl: 'app/search/search.html',
         controller: 'SearchCtrl'
       });

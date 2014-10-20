@@ -1,15 +1,36 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container(ng-repeat='person in results')
+.container
   .row
-    .col-md-1.pull-left
-      img.img-responsive.img-circle.center-block(ng-if='person.picture', ng-src='{{person.picture | userPicture}}', width='45px', height='45px')
-      img.img-responsive.img-circle.center-block(ng-if='!person.picture', gravatar-src='person.email', gravatar-size='45')
-    .col-md-4.pull-left.searchName{{ person.name }}
-    .col-md-2.pull-right
-      btn.btn.btn-lg.btn-block(ng-click='follow(person)', ng-class='person.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
+    form(ng-submit='search(term)')
+      .col-md-10
+        .input-group
+            input.form-control(type='text', ng-model='term')
+            .input-group-btn(dropdown, is-open="status.isopen")
+              button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+                | {{ status.selection || 'Search Item' }}
+                span.caret
+              ul.dropdown-menu(role='menu')
+                li
+                  a(ng-click='setSearch("Names")') Names
+                li
+                  a(ng-click='setSearch("Tags")') Tags
+                li
+                  a(ng-click='setSearch("Channels")') Channels
+      .col-md-2
+        button.btn.btn-block.btn-default(type='submit') Search
   hr
+
+  div(ng-repeat='person in results')
+    .row
+      .col-md-1.pull-left
+        img.img-responsive.img-circle.center-block(ng-if='person.picture', ng-src='{{person.picture | userPicture}}', width='45px', height='45px')
+        img.img-responsive.img-circle.center-block(ng-if='!person.picture', gravatar-src='person.email', gravatar-size='45')
+      .col-md-4.pull-left.searchName(ng-click='goToProfile(person._id)'){{ person.name }}
+      .col-md-2.pull-right
+        btn.btn.btn-lg.btn-block(ng-click='follow(person)', ng-class='person.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
+    hr
 
 div(growl)
 
-app-footer
+app-footer(ng-model='currentUser')
