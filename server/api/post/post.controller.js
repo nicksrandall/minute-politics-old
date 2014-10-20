@@ -100,6 +100,7 @@ exports.create = function(req, res) {
     webmSD: 'https://d3yvfnmmtea7a.cloudfront.net/webmSD/' + url.replace(/ /g, '%2B') + '.webm',
     webmHD: 'https://d3yvfnmmtea7a.cloudfront.net/webmHD/' + url.replace(/ /g, '%2B') + '.webm',
     author: req.user,
+    poster: url.replace(/ /g, '%2B') + '-00004.png',
     headline: req.body.headline,
     tags: req.body.tags,
     hidden: true,

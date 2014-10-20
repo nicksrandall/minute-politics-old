@@ -36,6 +36,7 @@ var auth = {
 };
 
 var snsClient = new SNSClient(auth, function(err, message) {
+  console.log(message);
   socketio.sockets.emit("SNS", message);
 });
 
