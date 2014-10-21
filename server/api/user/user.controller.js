@@ -15,7 +15,7 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
+  User.find({role: 'admin'}, '-salt -hashedPassword', function (err, users) {
     if(err) return res.send(500, err);
     res.json(200, users);
   });
@@ -115,7 +115,7 @@ exports.follow = function(req, res) {
       });
       currentUser.save(function (error2) {
         if (error2) { return handleError(res, error2); }
-        res.json(200, currentUser)
+        res.json(200, currentUser);
       });
     });
   });
