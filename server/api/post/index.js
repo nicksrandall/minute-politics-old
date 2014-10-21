@@ -18,6 +18,7 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/followed_by/:id', auth.isAuthenticated(), controller.followed_by);
 router.get('/user/:id', auth.isAuthenticated(), controller.user);
 router.get('/tag/:tagName', auth.isAuthenticated(), controller.tag);
+router.get('/tags/:tag', auth.isAuthenticated(), controller.tags);
 
 // Post Actions
 router.post('/like/:id', auth.isAuthenticated(), controller.like);

@@ -10,11 +10,11 @@ angular.module('stumpIoApp')
       selection: 'Names'
     };
 
+    $scope.selection = 'show';
+
     $scope.setSearch = function(thing) {
-      console.log(thing);
       $scope.status.selection = thing;
     };
-
 
     $scope.follow = function (person) {
       if(person.isFollowing) {
@@ -31,6 +31,11 @@ angular.module('stumpIoApp')
       switch ($scope.status.selection) {
         case 'Names':
           userAction.searchByName(term, function (results) {
+            $scope.results = results;
+          });
+          break;
+        case 'Tags':
+          userAction.searchByTag(term, function (results) {
             $scope.results = results;
           });
           break;

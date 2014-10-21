@@ -8,7 +8,7 @@ div(ng-include='"components/navbar/navbar.html"')
             input.form-control(type='text', ng-model='term')
             .input-group-btn(dropdown, is-open="status.isopen")
               button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-                | {{ status.selection || 'Search Item' }}
+                | {{ status.selection }}
                 span.caret
               ul.dropdown-menu(role='menu')
                 li
@@ -20,17 +20,25 @@ div(ng-include='"components/navbar/navbar.html"')
       .col-md-2
         button.btn.btn-block.btn-default(type='submit') Search
   hr
-
-  div(ng-repeat='person in results')
-    .row
-      .col-md-1.pull-left
-        img.img-responsive.img-circle.center-block(ng-if='person.picture', ng-src='{{person.picture | userPicture}}', width='45px', height='45px')
-        img.img-responsive.img-circle.center-block(ng-if='!person.picture', gravatar-src='person.email', gravatar-size='45')
-      .col-md-4.pull-left.searchName(ng-click='goToProfile(person._id)'){{ person.name }}
-      .col-md-2.pull-right
-        btn.btn.btn-lg.btn-block(ng-click='follow(person)', ng-class='person.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
-    hr
-
+  div.test(ng-switch='status.selection')
+    div(ng-switch-when='Names')
+      div(ng-repeat='person in results')
+        .row
+          .col-md-1.pull-left
+            img.img-responsive.img-circle.center-block(ng-if='person.picture', ng-src='{{person.picture | userPicture}}', width='45px', height='45px')
+            img.img-responsive.img-circle.center-block(ng-if='!person.picture', gravatar-src='person.email', gravatar-size='45')
+          .col-md-4.pull-left.searchName(ng-click='goToProfile(person._id)'){{ person.name }}
+          .col-md-2.pull-right
+            btn.btn.btn-lg.btn-block(ng-click='follow(person)', ng-class='person.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
+        hr
+    div(ng-switch-when='Tags')
+      div(ng-repeat='tag in results')
+        .row
+          .col-md-12.searchTag
+            a(href='{{"/feed/tag/" + tag}}') {{ tag }}
+            hr
+    div(ng-switch-when='Channels')
+      p Channels are comming soon!
 div(growl)
 
 app-footer(ng-model='currentUser')

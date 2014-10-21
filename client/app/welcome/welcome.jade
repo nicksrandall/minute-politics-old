@@ -3,7 +3,19 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .row
     .col-md-12
-        h1 This is the welcome view.
-        p Here we will teach new users how to use our platform and we will help them get started by suggesting people for them to follow.
+      h1 Welcome to Minute Politics.
+      p Here are a few suggestions on people you should follow. Soon, we'll have a short questionaire that you can fill out so that we can better match politicans to your preferences.
+      hr
+  div(ng-repeat='person in results')
+    .row
+      .col-md-1.pull-left
+        img.img-responsive.img-circle.center-block(ng-if='person.picture', ng-src='{{person.picture | userPicture}}', width='45px', height='45px')
+        img.img-responsive.img-circle.center-block(ng-if='!person.picture', gravatar-src='person.email', gravatar-size='45')
+      .col-md-4.pull-left.searchName(ng-click='goToProfile(person._id)'){{ person.name }}
+      .col-md-2.pull-right
+        btn.btn.btn-lg.btn-block(ng-click='follow(person)', ng-class='person.isFollowing === true ? "btn-success" : "btn-default"') {{person.isFollowing === true ? 'Unfollow' : 'Follow'}}
+    hr
+
+  buttn.btn.btn-lg.btn-success(ng-click='goToFeed()') Go to Your Feed
 
 app-footer(ng-model='currentUser')

@@ -52,6 +52,12 @@ angular.module('stumpIoApp')
           cb(results);
         });
       },
+      searchByTag: function (tag, cb) {
+        $http.get('/api/posts/tags/' + tag)
+          .success(function(results) {
+            cb(results);
+          });
+      },
       like: function (post, cb) {
         if (!_.contains(post.likers, currentUser._id)) {
           $http.post('/api/posts/like/' + post._id);

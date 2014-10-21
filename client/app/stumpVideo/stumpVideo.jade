@@ -1,13 +1,1 @@
-.video-container
-  video.video-js.vjs-default-skin(width='auto', height='auto', id='{{ "video_" + $index }}')
-    //- source(src='{{ post.mobile }}', type='video/mp4')
-    //- source(src='{{ post.mp4SD }}',  type='video/mp4')
-    //- source(src='{{ post.mp4HD }}',  type='video/mp4')
-    //- source(src='{{ post.webmSD }}', type='video/webm')
-    //- source(src='{{ post.webmSD }}', type='video/webm')
-  .pull-left
-    span(style='line-height: 38px;') Tags:&nbsp;
-      a.tag(ng-repeat='tag in post.tags', href='{{"/feed/tag/" + tag.text}}') {{tag.text}}
-  .btn-group.pull-right
-    a.btn.btn-default(href='#', role='button') {{post.likes + ' Likes'}}
-    a.btn.btn-default(href='#', role='button') {{post.likes + ' Shares'}}
+

@@ -13,11 +13,8 @@ angular.module('stumpIoApp')
       /* jshint ignore:start */
       // We need to ignore this because it comes from Facebook.
       FB.ui({
-       method: 'share_open_graph',
-       action_type: 'og.likes',
-       action_properties: JSON.stringify({
-        object:'http://minutepolitics-minutepolitics.rhcloud.com',
-       })
+       method: 'share',
+       href:'http://minutepolitics-minutepolitics.rhcloud.com',
       }, function(response){
         console.log(response);
       });

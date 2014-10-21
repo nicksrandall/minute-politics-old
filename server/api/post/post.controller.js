@@ -46,6 +46,18 @@ exports.user = function(req, res) {
 };
 
 // Get list of posts for a specific user
+exports.tags = function(req, res) {
+  var tag = req.params.tag;
+  Post.find()
+    .distinct('tags.text')
+    .where({'tags.text': new RegExp(tag , 'i')})
+    .exec(function (err, posts) {
+      if (err) return res.status(400).send('Error firding posts.');
+      res.json(200, posts);
+    });
+};
+
+// Gets a unique list of tags.
 exports.tag = function(req, res) {
   Post.find()
     .where('tags.text').equals(req.params.tagName)
@@ -100,7 +112,7 @@ exports.create = function(req, res) {
     webmSD: 'https://d3yvfnmmtea7a.cloudfront.net/webmSD/' + url.replace(/ /g, '%2B') + '.webm',
     webmHD: 'https://d3yvfnmmtea7a.cloudfront.net/webmHD/' + url.replace(/ /g, '%2B') + '.webm',
     author: req.user,
-    poster: url.replace(/ /g, '%2B') + '-00004.png',
+    poster: url.replace(/ /g, '%2B') + '-00001.png',
     headline: req.body.headline,
     tags: req.body.tags,
     hidden: true,
