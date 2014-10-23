@@ -14,8 +14,8 @@ angular.module('stumpIoApp', [
     'ngAnimate'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, growlProvider) {
-    $urlRouterProvider
-      .otherwise('/');
+    // $urlRouterProvider
+    //   .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
