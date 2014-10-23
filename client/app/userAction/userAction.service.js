@@ -8,6 +8,7 @@ angular.module('stumpIoApp')
     }
 
     function followUser (person) {
+      currentUser.following.push(person);
       $http.get('/api/users/follow/' + person._id)
         .success(function() {
           growl.success('You are now following ' + person.name + '.');

@@ -34,11 +34,23 @@ angular.module('stumpIoApp')
         container: 'stump-user-photos'
       };
 
-      filepicker.pickAndStore(pickerOptions, storeOptions, function (files) {
-        var fileKey = files[0].key;
-        $scope.currentUser.picture = fileKey;
-        console.log(fileKey);
-        $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser);
+      var converOptions = {
+        width: 250,
+        height: 250,
+        fit: 'crop',
+        align: 'faces',
+        format: 'png'
+      };
+
+      filepicker.pick(pickerOptions, function (file) {
+        console.log(file);
+        filepicker.convert(file, converOptions, storeOptions, function (newFile) {
+          console.log(newFile);
+          var fileKey = newFile.key;
+          $scope.currentUser.picture = fileKey;
+          console.log(fileKey);
+          $http.put('/api/users/' + $scope.currentUser._id,  $scope.currentUser);
+        });
       });
     };
 

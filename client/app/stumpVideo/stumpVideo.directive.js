@@ -10,6 +10,7 @@ angular.module('stumpIoApp')
         element.append('<div id=' + attrs.vid + ' />');
         var node = element.find('div').get(0);
         jwplayer(node).setup({
+          image: scope.post.poster ? ('https://stump-video-thumb.s3-us-west-2.amazonaws.com/' + scope.post.poster) : null,
           sources: scope.post.src,
           width: '100%',
           aspectratio: '16:9'
