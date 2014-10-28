@@ -13,7 +13,8 @@ angular.module('stumpIoApp')
           image: scope.post.poster ? ('https://stump-video-thumb.s3-us-west-2.amazonaws.com/' + scope.post.poster) : null,
           sources: scope.post.src,
           width: '100%',
-          aspectratio: '16:9'
+          aspectratio: '16:9',
+          ga: {}
         });
       }
     };

@@ -386,7 +386,7 @@ module.exports = function (grunt) {
       }
     },
 
-    buildcontrol: {
+    ge: {
       options: {
         dir: 'dist',
         commit: true,

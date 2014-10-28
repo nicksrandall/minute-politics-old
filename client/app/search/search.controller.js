@@ -16,6 +16,10 @@ angular.module('stumpIoApp')
       $scope.status.selection = thing;
     };
 
+    $scope.goToTag = function () {
+      $state.go('tag')
+    }
+
     $scope.follow = function (person) {
       if(person.isFollowing) {
         person.isFollowing = false;

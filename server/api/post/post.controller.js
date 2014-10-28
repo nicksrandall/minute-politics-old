@@ -106,11 +106,11 @@ exports.create = function(req, res) {
   var url = req.body.videoURL;
   transcodeVideo(url);
   post = new Post({
-    mp4SD: 'https://d3yvfnmmtea7a.cloudfront.net/mp4SD/' + url.replace(/ /g, '%2B') + '.mp4',
-    mp4HD: 'https://d3yvfnmmtea7a.cloudfront.net/mp4HD/' + url.replace(/ /g, '%2B') + '.mp4',
-    mobile: 'https://d3yvfnmmtea7a.cloudfront.net/mobile/' + url.replace(/ /g, '%2B') + '.mp4',
-    webmSD: 'https://d3yvfnmmtea7a.cloudfront.net/webmSD/' + url.replace(/ /g, '%2B') + '.webm',
-    webmHD: 'https://d3yvfnmmtea7a.cloudfront.net/webmHD/' + url.replace(/ /g, '%2B') + '.webm',
+    mp4SD: '//videos.minutepolitics.com/mp4SD/' + url.replace(/ /g, '%2B') + '.mp4',
+    mp4HD: '//videos.minutepolitics.com/mp4HD/' + url.replace(/ /g, '%2B') + '.mp4',
+    mobile: '//videos.minutepolitics.com/mobile/' + url.replace(/ /g, '%2B') + '.mp4',
+    webmSD: '//videos.minutepolitics.com/webmSD/' + url.replace(/ /g, '%2B') + '.webm',
+    webmHD: '//videos.minutepolitics.com/webmHD/' + url.replace(/ /g, '%2B') + '.webm',
     author: req.user,
     poster: url.replace(/ /g, '%2B') + '-00001.png',
     headline: req.body.headline,
